@@ -65,7 +65,8 @@ public class DbMigrate implements Command {
             result.put("message", "Nothing to migrate.");
         } else {
 
-            List<FileContent> filesContent = ScriptFileHandler.getRelevantScriptsForMigration(actualDBVersion, toVersion);
+            List<FileContent> filesContent = ScriptFileHandler.getRelevantScriptsForMigration(actualDBVersion,
+                    toVersion);
 
             if (!filesContent.isEmpty()) {
 

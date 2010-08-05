@@ -33,27 +33,29 @@ public class VersionTableHandler {
         return version;
     }
 
+    public static final String TABLE_NAME = "jdbversion";
+    
     public boolean hasVersionTableInDatabase() {
         Boolean has = Boolean.FALSE;
-        has = this.dbConnection.existTable("version");
+        has = this.dbConnection.existTable(VersionTableHandler.TABLE_NAME);
         return has;
     }
 
-    public static final String CREATE_VERSION_STATEMENT = "create table version(version integer not null)";
+    public static final String CREATE_VERSION_STATEMENT = "create table jdbversion(version integer not null)";
 
     public void createVersionTable() {
         this.dbConnection.execute(VersionTableHandler.CREATE_VERSION_STATEMENT);
     }
 
-    public static final String START_VERSION_TABLE_STATEMENT = "insert into version(version) values(0)";
+    public static final String START_VERSION_TABLE_STATEMENT = "insert into jdbversion(version) values(0)";
 
     public void startVersionTable() {
         this.dbConnection.execute(VersionTableHandler.START_VERSION_TABLE_STATEMENT);
     }
 
-    public static final String LAST_DB_VERSION_STATEMENT = "select version from version";
+    public static final String LAST_DB_VERSION_STATEMENT = "select version from jdbversion";
 
-    public static final String UPDATE_DB_VERSION_STATEMENT = "update version set version = ?";
+    public static final String UPDATE_DB_VERSION_STATEMENT = "update jdbversion set version = ?";
 
     // public void updateDBVersion() {
     // String query = VersionTableHandler.UPDATE_DB_VERSION_STATEMENT;

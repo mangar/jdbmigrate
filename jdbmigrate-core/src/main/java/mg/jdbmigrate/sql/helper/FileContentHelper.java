@@ -65,6 +65,7 @@ public class FileContentHelper {
 
             if (stUnderPosition >= 0) {
                 String v = fileName.substring(0, stUnderPosition);
+                v = v.substring(v.length()-1);
                 version = NumberUtils.toInt(v, FileContentHelper.VERSION);
             }
         }

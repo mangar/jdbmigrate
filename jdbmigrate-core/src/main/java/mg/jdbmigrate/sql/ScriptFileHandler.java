@@ -18,17 +18,6 @@ import org.apache.commons.lang.math.NumberUtils;
  */
 public class ScriptFileHandler {
 
-//    
-//    //TEST
-//    public static FileContent getMoreRecentFile() {
-//        
-//        App.DEFAULT_BASE_DIR
-//        
-//        FileContent recentFileContent = new FileContent();
-//        return recentFileContent;
-//    }
-    
-    
     public static FileContent getMoreRecentFile(List<FileContent> filesContent) {
         FileContent recentFileContent = new FileContent();
         recentFileContent.setVersion(0);

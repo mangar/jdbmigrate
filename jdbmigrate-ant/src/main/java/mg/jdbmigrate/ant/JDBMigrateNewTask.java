@@ -12,20 +12,14 @@ import org.apache.tools.ant.Task;
  */
 public class JDBMigrateNewTask extends Task {
 
-	private String configFile;
-	private String output;
+    private String toVersion;
 
-	public void execute() throws BuildException {
-		System.out.println("Config: " + this.configFile);
-		System.out.println("Output: " + this.output);
-	}
+    public void execute() throws BuildException {
+        System.out.println("To Version: " + this.toVersion);
+    }
 
-	public void setConfigFile(String configFile) {
-		this.configFile = configFile;
-	}
-
-	public void setOutput(String output) {
-		this.output = output;
-	}
+    public void setToVersion(String toVersion) {
+        this.toVersion = toVersion;
+    }
 
 }

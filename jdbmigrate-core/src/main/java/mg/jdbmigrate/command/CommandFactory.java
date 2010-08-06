@@ -3,11 +3,8 @@
  */
 package mg.jdbmigrate.command;
 
-import java.util.List;
-
 import mg.jdbmigrate.command.dbmigrate.DbMigrate;
 import mg.jdbmigrate.command.dbnew.DbNew;
-import mg.jdbmigrate.sql.FileContent;
 
 import org.apache.commons.lang.ArrayUtils;
 

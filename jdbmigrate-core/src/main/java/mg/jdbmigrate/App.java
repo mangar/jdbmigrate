@@ -11,7 +11,6 @@ import mg.jdbmigrate.command.CommandFactory;
 public class App {
 
     public static final String DEFAULT_BASE_DIR = "src/db";
-    // public static final Integer DEFAULT_LAST_VERSION = Integer.valueOf(9999);
 
     DBConnection dbConnection;
     VersionTableHandler versionTableHandler;

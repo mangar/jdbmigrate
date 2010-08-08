@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 import mg.jdbmigrate.App;
 import mg.jdbmigrate.util.PropertiesLoad;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * @author marcio.garcia
  * 
@@ -32,9 +34,11 @@ public class DBConnection {
 
     }
 
-    public static DBConnection createDefault() {
+    public static DBConnection createDefault(String file) {
         DBConnection instance = new DBConnection();
-        Properties props = PropertiesLoad.loadDBConfiguration(App.DEFAULT_BASE_DIR + "/dbmigrate.properties");
+
+        Properties props = instance.getPropertiesFromFile(file);
+
         instance.driver = props.getProperty("driver_class");
         instance.url = props.getProperty("url");
         instance.username = props.getProperty("username");
@@ -43,6 +47,19 @@ public class DBConnection {
         instance.connection = instance.connect();
 
         return instance;
+    }
+
+    // TEST
+    Properties getPropertiesFromFile(String file) {
+        Properties props = null;
+
+        if (StringUtils.isEmpty(file)) {
+            props = PropertiesLoad.loadDBConfiguration(App.DEFAULT_BASE_DIR + "/" + App.DEFAULT_PROPERTIES_FILE);
+        } else {
+            props = PropertiesLoad.loadDBConfiguration(file);
+        }
+
+        return props;
     }
 
     public static DBConnection create(String driver, String url, String username, String pwd) {
@@ -70,8 +87,8 @@ public class DBConnection {
             String password = this.pwd;
             connection = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
-            throw new RuntimeException("Problems to connect to the Database (" + this.driver + " / " + this.url + " / " + this.username
-                    + ": " + e.toString());
+            throw new RuntimeException("Problems to connect to the Database (" + this.driver + " / " + this.url + " / "
+                    + this.username + ": " + e.toString());
         }
         return connection;
     }
@@ -111,10 +128,10 @@ public class DBConnection {
                 response = rs.getInt(1);
             }
         } catch (Exception e) {
-            logger.severe("Problem executing the prepared statement: " + VersionTableHandler.LAST_DB_VERSION_STATEMENT + " >> "
-                    + e.toString());
-            throw new RuntimeException("Problem executing the prepared statement: " + VersionTableHandler.LAST_DB_VERSION_STATEMENT
+            logger.severe("Problem executing the prepared statement: " + VersionTableHandler.LAST_DB_VERSION_STATEMENT
                     + " >> " + e.toString());
+            throw new RuntimeException("Problem executing the prepared statement: "
+                    + VersionTableHandler.LAST_DB_VERSION_STATEMENT + " >> " + e.toString());
         }
         return response;
     }
@@ -131,7 +148,8 @@ public class DBConnection {
             }
 
         } catch (Exception e) {
-            throw new RuntimeException("Problem executing the prepared statement: show tables like ?' >> " + e.toString());
+            throw new RuntimeException("Problem executing the prepared statement: show tables like ?' >> "
+                    + e.toString());
         }
 
         return exist;

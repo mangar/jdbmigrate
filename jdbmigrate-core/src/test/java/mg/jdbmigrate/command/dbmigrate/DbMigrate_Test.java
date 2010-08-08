@@ -51,7 +51,7 @@ public class DbMigrate_Test {
     @Before
     public void setUp() {
         mockStatic(DBConnection.class);
-        when(DBConnection.createDefault()).thenReturn(dbConnection);
+        when(DBConnection.createDefault(null)).thenReturn(dbConnection);
 
         mockStatic(VersionTableHandler.class);
         when(VersionTableHandler.create((DBConnection) any())).thenReturn(versionTableHandler);
@@ -83,7 +83,7 @@ public class DbMigrate_Test {
         when(versionTableHandler.getVersion()).thenReturn(50);
 
         mockStatic(ScriptFileHandler.class);
-        when(ScriptFileHandler.getRelevantScriptsForMigration(anyInt(), anyInt())).thenReturn(filesContent10To100);
+        when(ScriptFileHandler.getRelevantScriptsForMigration(anyInt(), anyInt(), any(String.class))).thenReturn(filesContent10To100);
 
         DbMigrate dbMigrate = new DbMigrate();
 
@@ -98,7 +98,7 @@ public class DbMigrate_Test {
         when(versionTableHandler.getVersion()).thenReturn(50);
 
         mockStatic(ScriptFileHandler.class);
-        when(ScriptFileHandler.getRelevantScriptsForMigration(anyInt(), anyInt())).thenReturn(filesContent10To100);
+        when(ScriptFileHandler.getRelevantScriptsForMigration(anyInt(), anyInt(), any(String.class))).thenReturn(filesContent10To100);
 
         DbMigrate dbMigrate = new DbMigrate(new String[] { "to=10" });
 

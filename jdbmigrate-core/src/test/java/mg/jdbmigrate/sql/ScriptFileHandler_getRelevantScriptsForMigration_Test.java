@@ -53,7 +53,7 @@ public class ScriptFileHandler_getRelevantScriptsForMigration_Test {
         Integer fromVersion = Integer.valueOf(10);
         Integer toVersion = Integer.valueOf(100);
 
-        List<FileContent> contents = ScriptFileHandler.getRelevantScriptsForMigration(fromVersion, toVersion);
+        List<FileContent> contents = ScriptFileHandler.getRelevantScriptsForMigration(fromVersion, toVersion, "./");
         assertEquals(1, contents.size());
     }
 

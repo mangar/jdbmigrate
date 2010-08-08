@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import mg.jdbmigrate.App;
 import mg.jdbmigrate.sql.helper.FileContentHelper;
 
 import org.apache.commons.lang.math.NumberUtils;
@@ -31,13 +30,14 @@ public class ScriptFileHandler {
         return recentFileContent;
     }
 
-    public static List<FileContent> getRelevantScriptsForMigration(Integer fromVersion, Integer toVersion) {
+    public static List<FileContent> getRelevantScriptsForMigration(Integer fromVersion, Integer toVersion,
+            String scriptDir) {
         List<FileContent> relevantFilesContent = new ArrayList<FileContent>();
 
         int minVersion = NumberUtils.min(toVersion, fromVersion, toVersion);
         int maxVersion = NumberUtils.max(fromVersion, fromVersion, toVersion);
 
-        List<String> files = ScriptFileLocator.findScriptsFromDir(App.DEFAULT_BASE_DIR);
+        List<String> files = ScriptFileLocator.findScriptsFromDir(scriptDir);
         List<FileContent> filesContent = FileContentHelper.createFromFilePaths(files);
 
         Collections.sort(filesContent);

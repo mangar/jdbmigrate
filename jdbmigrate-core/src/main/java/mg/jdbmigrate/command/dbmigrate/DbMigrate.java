@@ -32,7 +32,7 @@ public class DbMigrate implements Command {
     public DbMigrate(String... params) {
         this.params = DbMigrateParams.createFromParams(params);
 
-        this.dbConnection = DBConnection.createDefault();
+        this.dbConnection = DBConnection.createDefault(this.params.getConfigFile());
         this.versionTableHandler = VersionTableHandler.create(this.dbConnection);
         this.executeMigrate = ExecuteMigrate.create(this.dbConnection);
     }
@@ -66,7 +66,7 @@ public class DbMigrate implements Command {
         } else {
 
             List<FileContent> filesContent = ScriptFileHandler.getRelevantScriptsForMigration(actualDBVersion,
-                    toVersion);
+                    toVersion, params.getConfigFile());
 
             if (!filesContent.isEmpty()) {
 

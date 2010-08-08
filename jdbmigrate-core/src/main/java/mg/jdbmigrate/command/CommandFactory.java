@@ -58,4 +58,40 @@ public class CommandFactory {
         return dbMigrate;
     }
 
+    public static class Params {
+
+        private String action;
+        private String toVersion;
+        private String configFile;
+
+        public Params(String... args) {
+
+        }
+
+        public String getAction() {
+            return action;
+        }
+
+        public void setAction(String action) {
+            this.action = action;
+        }
+
+        public String getToVersion() {
+            return toVersion;
+        }
+
+        public void setToVersion(String toVersion) {
+            this.toVersion = toVersion;
+        }
+
+        public String getConfigFile() {
+            return configFile;
+        }
+
+        public void setConfigFile(String configFile) {
+            this.configFile = configFile;
+        }
+
+    }
+
 }

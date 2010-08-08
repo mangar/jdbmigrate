@@ -23,7 +23,7 @@ public class FileContentHelper {
     public static final Integer VERSION = Integer.valueOf(999);
 
     // TEST
-    public static List<FileContent> createFromFilePath(String path) {
+    public static List<FileContent> createFromFilePath(String path) {        
         List<String> scriptFilePaths = ScriptFileLocator.findScriptsFromDir(path);
         List<FileContent> fileContents = FileContentHelper.createFromFilePaths(scriptFilePaths);
         return fileContents;

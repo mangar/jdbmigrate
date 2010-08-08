@@ -33,7 +33,13 @@ public class ScriptFileLocator_Test {
     @Test(expected = RuntimeException.class)
     public void findScriptsFromDir_Fail_Test() {
         ScriptFileLocator.findScriptsFromDir("/some_dir/that/doesnt/exist/here");
-    }    
-    
-    
+    }
+
+    @Test
+    public void findScriptsFromDir_isFile_Test() throws Exception {
+        List<String> scripts = ScriptFileLocator.findScriptsFromDir(new File(this.getClass().getResource("00_f.sql")
+                .toURI()).toString());
+        assertEquals(4, scripts.size());
+    }
+
 }

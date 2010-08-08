@@ -1,7 +1,5 @@
 package mg.jdbmigrate;
 
-import mg.jdbmigrate.access.DBConnection;
-import mg.jdbmigrate.access.VersionTableHandler;
 import mg.jdbmigrate.command.Command;
 import mg.jdbmigrate.command.CommandFactory;
 
@@ -11,20 +9,15 @@ import mg.jdbmigrate.command.CommandFactory;
 public class App {
 
     public static final String DEFAULT_BASE_DIR = "src/db";
+    public static final String DEFAULT_PROPERTIES_FILE = "dbmigrate.properties";
 
-    DBConnection dbConnection;
-    VersionTableHandler versionTableHandler;
+    String[] args = new String[] {};
 
-    public App() {
-        this.dbConnection = DBConnection.createDefault();
-        this.versionTableHandler = VersionTableHandler.create(this.dbConnection);
+    public App(String... args) {
+        this.args = args;
     }
 
-    public void closeDBConnection() {
-        this.dbConnection.closeConnection();
-    }
-
-    public static void main(String... args) {
+    public void run() {
 
         Command command = CommandFactory.createCommand(args);
         if (command != null) {
@@ -41,12 +34,18 @@ public class App {
             System.out.println("in /dir/db directory");
             System.out.println("");
             System.out.println("db:migrate");
-            System.out.println("- db:migrate to=12");
+            System.out.println("- db:migrate to=12 config=src/db/dbconnectionconfig.properties");
             System.out.println("will migrate to version 12. ");
             System.out.println("Upgrade and downgrade is automatically calculated by the lib");
             System.out.println("If not specified the 'to' param it will assume the last version (upgrade)");
             System.exit(0);
         }
+
+    }
+
+    public static void main(String... args) {
+        App app = new App(args);
+        app.run();
     }
 
 }

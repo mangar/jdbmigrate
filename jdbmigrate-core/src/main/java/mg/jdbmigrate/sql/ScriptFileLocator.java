@@ -19,8 +19,12 @@ public class ScriptFileLocator {
 
         File dir = new File(baseDir);
 
+        if (dir.isFile()) {
+            dir = new File(dir.getParent());
+        }        
+        
         if (!dir.exists()) {
-            throw new RuntimeException("Dir: " + baseDir + " not found!");
+            throw new RuntimeException("Dir: " + dir + " not found!");
         }
 
         File[] files = dir.listFiles(new SQLFileFilter());

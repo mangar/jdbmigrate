@@ -20,15 +20,23 @@ import org.apache.commons.lang.StringUtils;
 public class DbMigrateParams {
 
     private String toVersion;
+    private String configFile;
 
     // TEST
     // REFACTORY
     public static DbMigrateParams createFromParams(String... strings) {
+
         DbMigrateParams instance = new DbMigrateParams();
         instance.toVersion = MyArrayUtils.findParam(strings, "to");
 
+        instance.configFile = MyArrayUtils.findParam(strings, "config");
+
+        if (StringUtils.isEmpty(instance.configFile)) {
+            instance.configFile = App.DEFAULT_BASE_DIR + "/" + App.DEFAULT_PROPERTIES_FILE;
+        }
+
         if (StringUtils.isBlank(instance.toVersion)) {
-            List<FileContent> filesContent = FileContentHelper.createFromFilePath(App.DEFAULT_BASE_DIR);
+            List<FileContent> filesContent = FileContentHelper.createFromFilePath(instance.configFile);
             FileContent lastFile = ScriptFileHandler.getMoreRecentFile(filesContent);
             instance.toVersion = String.valueOf(lastFile.getVersion());
         }
@@ -36,16 +44,20 @@ public class DbMigrateParams {
         return instance;
     }
 
-    
-        
-    
-    
     public String getToVersion() {
         return toVersion;
     }
 
     public void setToVersion(String toVersion) {
         this.toVersion = toVersion;
+    }
+
+    public String getConfigFile() {
+        return configFile;
+    }
+
+    public void setConfigFile(String configFile) {
+        this.configFile = configFile;
     }
 
 }

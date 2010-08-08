@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<project default="main">
+
+	<taskdef name="jdbmigrate" classname="mg.jdbmigrate.ant.JDBMigrateTask">
+		<classpath>
+			<pathelement location="./lib/jdbmigrate-ant-0.0.1.jar" />
+			<pathelement location="./lib/jdbmigrate-core-0.0.1.jar" />
+			<pathelement location="./lib/commons-lang-2.5.jar" />
+			<pathelement location="./lib/mysql-connector-java-5.1.10.jar" />
+		</classpath>
+	</taskdef>
+
+	<target name="last">
+		<jdbmigrate config="db/dbmigrate.properties" />
+	</target>
+
+	<target name="first">
+		<jdbmigrate to="1" config="db/dbmigrate.properties" />
+	</target>
+
+	<target name="zero">
+		<jdbmigrate to="0" config="db/dbmigrate.properties" />
+	</target>
+
+	<target name="main" depends="last, first, zero">
+	</target>
+
+</project>

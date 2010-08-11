@@ -10,14 +10,17 @@
 		</classpath>
 	</taskdef>
 
+	<!-- last available update -->
 	<target name="last">
 		<jdbmigrate config="db/dbmigrate.properties" />
 	</target>
 
+	<!-- back to the version one -->
 	<target name="first">
 		<jdbmigrate to="1" config="db/dbmigrate.properties" />
 	</target>
 
+	<!-- clean databse, version zero -->
 	<target name="zero">
 		<jdbmigrate to="0" config="db/dbmigrate.properties" />
 	</target>

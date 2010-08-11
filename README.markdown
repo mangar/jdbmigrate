@@ -12,6 +12,9 @@ So, this is the why I started this project: "Simplicity to control the database 
 Feel free to contribute with your opinion, bug fixes, tests implementations or just watch it!
 
 
+----------
+
+
 dbmigrate.properties sample
 ---------------------------
 
@@ -21,6 +24,8 @@ dbmigrate.properties sample
     password=springrest
 
 
+----------
+
 
 MAVEN (not implemented yet)
 ---------------------------
@@ -29,6 +34,10 @@ MAVEN (not implemented yet)
   - goals
     - db:new (base_name)
     - db:migrate (version)
+
+
+----------
+
 
 ANT
 ---
@@ -78,27 +87,12 @@ Usage:
     </project>
 
 
-
-TODO
-====
-
-- [DONE] db configuration
-- [DONE] create database version's table
-- [DONE] insert the first record
-- [DONE] check the database version
-- [DONE] get script to run from the current version (db) and the wanted or last, depending on the command line parameter
-- [DONE] run db:migrate (upgrade and downgrade)
-- [DONE] run db:new
-- [DONE] run .sqls files 
-  - [DONE] ";" is the break point for the end of the statement
-- [DONE] back to a specific version
-- [DONE] go through a specific version
-- [DONE] get to know the version of the db
-- [DONE] start migration (up) from the version.version +1 til the last one
-
-- identify duplicate sequence of script files.
-- test rollback
-- scripts inside meta-inf (or package with all dependencies including scripts)
+----------
 
 
+License
+=======
+
+
+This code is free to use under the terms of the MIT license.
 

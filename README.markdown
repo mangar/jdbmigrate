@@ -1,5 +1,5 @@
-JDBMigrate
-==========
+JDBMigrate - V0.0.1
+===================
 
 Short explanation: The motivation of the JDBMigrate is the rake db:migrate for Java projects.
 
@@ -22,18 +22,6 @@ dbmigrate.properties sample
     url=jdbc:mysql://localhost:3306/springrest
     username=springrest
     password=springrest
-
-
-----------
-
-
-MAVEN (not implemented yet)
----------------------------
-
-- maven integration
-  - goals
-    - db:new (base_name)
-    - db:migrate (version)
 
 
 ----------
